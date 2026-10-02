@@ -1,10 +1,10 @@
-# GPC-Reg
+# CoCo-Reg
 
 
 ## Project structure
 
 ```text
-GPC-Reg-Code/
+CoCo-Reg-Code/
 ├── training/
 │   └── train_gpcreg.py
 ├── evaluation/
@@ -30,9 +30,9 @@ GPC-Reg-Code/
 Place the data and checkpoints under the project root as follows:
 
 ```text
-GPC-Reg-Code/
+CoCo-Reg-Code/
 ├── ModelNet10/
-├── GPC-Reg.pth
+├── CoCo-Reg.pth
 ├── DeftransNet.pth
 └── Robust_Trained.pth
 ```
@@ -54,7 +54,7 @@ Results are saved under `Registration/gpcreg/seed_<seed>/`.
 ## Formal evaluation
 
 ```powershell
-python -m evaluation.evaluate_gpcreg --data_root ModelNet10 --robust_ckpt Robust_Trained.pth --deftransnet_ckpt DeftransNet.pth --gpc_ckpt GPC-Reg.pth --gpc_script training/train_gpcreg.py --device cuda:0
+python -m evaluation.evaluate_gpcreg --data_root ModelNet10 --robust_ckpt Robust_Trained.pth --deftransnet_ckpt DeftransNet.pth --gpc_ckpt CoCo-Reg.pth --gpc_script training/train_gpcreg.py --device cuda:0
 ```
 
 The evaluator uses the fixed seed-42 split: 182 validation objects and 726
@@ -63,7 +63,7 @@ test objects. All models receive the same source, target and target order.
 ## Distribution data
 
 ```powershell
-python -m evaluation.generate_distance_distributions --gpc_ckpt GPC-Reg.pth --device cuda:0
+python -m evaluation.generate_distance_distributions --gpc_ckpt CoCo-Reg.pth --device cuda:0
 ```
 
 ## Figures
@@ -71,8 +71,8 @@ python -m evaluation.generate_distance_distributions --gpc_ckpt GPC-Reg.pth --de
 ```powershell
 python -m visualization.plot_mean_distance_by_deformation
 python -m visualization.plot_distance_distributions
-python -m visualization.visualize_registration_examples --gpc_ckpt GPC-Reg.pth --device cuda:0
-python -m visualization.visualize_failure_cases --gpc_ckpt GPC-Reg.pth --device cuda:0
+python -m visualization.visualize_registration_examples --gpc_ckpt CoCo-Reg.pth --device cuda:0
+python -m visualization.visualize_failure_cases --gpc_ckpt CoCo-Reg.pth --device cuda:0
 ```
 
 ## Deformation check
@@ -85,5 +85,5 @@ python -m tests.test_deformation --sample ModelNet10/desk/test/desk_0202.off --p
 
 - `Robust_Trained.pth` is the official pretrained checkpoint released by the authors.
 - `DeftransNet.pth` is the 20th epoch DefTransNet checkpoint trained with the original notebook `DeftransNet.ipynb`.
-- `GPC-Reg.pth` is the  20th epoch GPC-Reg checkpoint.
+- `CoCo-Reg.pth` is the  20th epoch CoCo-Reg checkpoint.
 
